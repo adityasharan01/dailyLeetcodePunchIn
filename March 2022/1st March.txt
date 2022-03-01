@@ -1,0 +1,22 @@
+Solved leetcode problem 338
+Given an integer n, return an array ans of length n + 1 such that for each i (0 <= i <= n), ans[i] is the number of 1's in the binary representation of i.
+
+-Went through the coding decoded youtube channel to understand the topic
+class Solution {
+    public int[] countBits(int n) {
+        int[] ans=new int[n+1];
+        ans[0]=0;
+        for(int i=1;i<n+1;i++){
+            if(i%2==0){
+                ans[i]=ans[i/2];
+            }
+            else{
+                ans[i]=ans[i-1]+1;
+            }
+        }
+        return ans;
+    }
+}
+
+-Learned about react testing 
+-Revised for ASDA Interview
