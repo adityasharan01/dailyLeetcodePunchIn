@@ -37,3 +37,5 @@ class Solution {
         return Math.max(take, skip);
     }
 }
+
+Post Daily Leetcode Solutio https://leetcode.com/hi-malik/
