@@ -24,5 +24,9 @@ Dp mei hamesha maximize ya minimize ki baat hoogi and n pe constraint rahega
 we derive the number by formula -- > 2 (odd) - 1
 permutations can happen number derived till 1 which gives n (n+1)/2 
 
+Main logic 
+dp[i]= ( dp[i-1] * permutation ) % mod
+
+
 we have to take mod while solving and cast it to integer 
 int mod =(int) Math.pow(10,9) +7;
