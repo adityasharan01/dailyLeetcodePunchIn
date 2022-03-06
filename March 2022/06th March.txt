@@ -1,0 +1,24 @@
+1359. Count All Valid Pickup and Delivery Options
+
+https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/
+
+class Solution {
+    
+        public int countOrders(int n) {
+            long[] dp = new long[501];
+            int mod = (int) Math.pow(10,9) + 7;
+            dp[1]=1L;
+            dp[2]=6L;
+    for (int i=3;i<=n;i++) {
+        int odddNo = 2 * i -1;
+        int permutations = odddNo * (odddNo+1)/2;
+        dp[i] = (dp[i-1]*(permutations))%mod;
+    }
+    return (int) dp[n];
+                          
+}
+}
+
+Dp mei hamesha maximize ya minimize ki baat hoogi and n pe constraint rahega 
+we derive the number by formula -- > 2 (odd) - 1
+permutations can happen number derived till 1 which gives n (n+1)/2 
