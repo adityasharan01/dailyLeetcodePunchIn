@@ -90,3 +90,7 @@ what do we need to consider when thinking
 about complecity?
 1. Always look for worst case complerily
 2. Always look at complerity for large/o data
+
+https://sunilgudivada369.gitbook.io/notebook/
+
+
