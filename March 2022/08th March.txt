@@ -1,0 +1,51 @@
+
+
+
+
+Learnings:
+
+
+
+
+2196. Create Binary Tree From Descriptions
+https://leetcode.com/problems/create-binary-tree-from-descriptions/
+this single question actually made revised full tree concepts
+
+class Solution {
+    public TreeNode createBinaryTree(int[][] descriptions) {
+        HashMap<Integer,TreeNode> hm=new HashMap<>();
+        HashSet<Integer> hs=new HashSet<>();
+        for(int[] arr:descriptions ){
+            int parentInt=arr[0];
+            int childInt=arr[1];
+            int isLeft=arr[2];
+            
+            hs.add(childInt);
+            
+            TreeNode parentNode=hm.getOrDefault(parentInt,new TreeNode(parentInt));
+            
+            if(isLeft==1){
+         parentNode.left=hm.getOrDefault(childInt,new TreeNode(childInt));
+                hm.put(childInt,parentNode.left);
+            }
+            else{
+          parentNode.right=hm.getOrDefault(childInt,new TreeNode(childInt));
+                hm.put(childInt,parentNode.right);
+            }
+            hm.put(parentInt,parentNode);
+            
+        }
+        
+        int root=-1;
+        for(int[] i:descriptions){
+            if(!hs.contains(i[0])){
+                root=i[0];
+                break;
+            }
+        }
+        return hm.getOrDefault(root,null);
+        
+        
+        
+    }
+}
