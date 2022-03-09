@@ -1,0 +1,29 @@
+82. Remove Duplicates from Sorted List II
+
+https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+Solution :
+My intuition : dummy node create krk do pointer k saath traverse krenge 
+agar two agal bagal node different hai toh dono pointer move hooga otherwise
+aage wala pointer ek aur loop mei chalega agar duplicate node milta hai toh
+
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy= new ListNode (0, head);
+        ListNode prev = dummy;
+                
+        while (head != null) {
+            if(head.next!=null && head.val == head.next.val){
+                while(head.next!=null && head.val == head.next.val){
+                    head=head.next;
+                }
+                prev.next=head.next;
+                head=head.next;
+            }
+            else{
+                prev=prev.next;
+                head=head.next;
+            }
+        }
+        return dummy.next;
+    }
+}
