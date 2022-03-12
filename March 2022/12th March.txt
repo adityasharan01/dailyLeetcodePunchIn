@@ -39,3 +39,8 @@ https://leetcode.com/problems/copy-list-with-random-pointer/
 		return newNodeHead;
     }
 }
+
+ek pointer original linked list pe aur ek pointer new linkedlist pe plus aur ek pointer jo head of new linked list point krega 
+		ek traversal mein linkedlist hashmap point hooga 
+		aur dusre traversal mei random pointer point hooga 
+		Node tt =hm.get(originalHead.random) 	
