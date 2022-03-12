@@ -1,0 +1,41 @@
+https://leetcode.com/problems/copy-list-with-random-pointer/
+
+138. Copy List with Random Pointer. ( Medium )
+
+    class Solution {
+        public Node copyRandomList(Node head) {
+        Node newNodeHead = null;
+		    Node newNode = null;
+		    Node temp = head;
+
+		HashMap<Node,Node> map = new HashMap<>();
+		
+        // CREATING DUPLICATE LIST
+		while(temp!=null){
+			if(newNodeHead == null){
+				newNodeHead = new Node(temp.val);
+				newNode = newNodeHead;
+				map.put(temp,newNodeHead);
+			}else{
+				newNode.next = new Node(temp.val);
+				newNode = newNode.next;
+				map.put(temp,newNode);
+			}
+			temp = temp.next;
+		}
+		
+        // ASSIGNING RANDOM VALUE
+		newNode = newNodeHead;
+		temp = head;
+		while(temp!=null){
+			Node tt = map.get(temp.random);
+
+			newNode.random = tt;
+
+			newNode = newNode.next;    
+			temp = temp.next;
+		}
+
+		return newNodeHead;
+    }
+}
