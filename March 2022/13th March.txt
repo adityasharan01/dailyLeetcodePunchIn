@@ -24,3 +24,11 @@ class Solution {
         return stack.empty();
     }
 }
+    Learnings:
+-
+
+
+Found out a youtube channel 
+https://www.youtube.com/channel/UCF4mbWVFU0LRm5LeQqrx1rA/videos
+
+Videos are in hindi.
