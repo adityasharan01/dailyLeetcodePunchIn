@@ -25,7 +25,8 @@ class Solution {
     }
 }
     Learnings:
--
+- stack declare krna hai aur not matching condition mei false return hooga ya phir
+aise soch lo ki agar match krr gya toh stack se usko pop krr do
 
 
 Found out a youtube channel 
