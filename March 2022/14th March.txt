@@ -1,5 +1,5 @@
-
-
+https://leetcode.com/problems/simplify-path/
+71. Simplify Path
 Method1:
 class Solution {
     public String simplifyPath(String path) {
@@ -14,5 +14,42 @@ class Solution {
             else st.add(s);
         }
         return "/" + String.join("/", st); 
+    }
+}
+
+
+Method2:
+Intuition : Sting split krr doo aur String array se push krte jaao stack mei 
+based pon the condition. resultant string form kroo
+class Solution {
+    public String simplifyPath(String path) {
+        Stack<String> st = new Stack<>();
+        String[] pathList = path.split("\\/");
+        for(String p : pathList)
+    {
+            if(p.length() == 0 || p.equals("."))
+            continue;
+            else if(p.equals(".."))
+            {
+                if(!st.empty())
+                {
+                st.pop();
+                }
+            }
+            else 
+            {
+            // string case
+                st.push(p);
+            }
+    }
+        String ans ="";
+        while(!st.empty())
+    {
+        ans =st.pop() +"/"+ ans;
+    }
+        if(ans.length() == 0)
+        return "/";
+        else
+        return "/" + ans.substring(0, ans.length() -1);
     }
 }
