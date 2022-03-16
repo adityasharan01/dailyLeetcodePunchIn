@@ -1,0 +1,34 @@
+https://leetcode.com/problems/validate-stack-sequences/
+
+946. Validate Stack Sequences
+
+Intuition :
+  i = 0; j = 0
+  • traverse pushed[] arr
+  push 1 ele in each iteration
+  •check while stack.top == popped[j]
+        if true -> stack.pop(), j++;
+  •after loop terminates, return true if stack is empty
+  
+  pushed array ko traverse krenge aur stack mei push krte jayenge until unless
+  popped array aur stack ka top barabar na ho jaaye
+  CONDITION :   [  s.size() > 0 && popped[j] == s.peek().  ]
+  jaise hi brarbar hua stack se pop krna hai aur popped array ko traverse krna hai jab tak
+  stack ka top aur popped array element brabar hai !!
+
+class Solution {
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+         int i=0, j=0;
+        Stack<Integer> s=new Stack<>();
+        while(i<pushed.length) {
+            s.push(pushed[i]);
+            while(s.size() > 0 && popped[j] == s.peek()) {
+                s.pop();
+                j++;
+            }
+            i++;
+        }
+        
+        return i==pushed.length && j==popped.length;
+    }
+}
