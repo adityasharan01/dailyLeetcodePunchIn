@@ -1,0 +1,32 @@
+https://leetcode.com/problems/score-of-parentheses/
+
+856. Score of Parentheses
+
+ Intuition :
+Instead of putting characters in the stack, here we put the score
+whenever we encounter a '(' we add the score to our stack and set the score again to 0.
+Condition 
+score=st.peek()+Math.max(2*score ,1);
+
+stack mei har open bracket k liye score =0  push hooga as stated in the quesion ki 
+balanced hai pehle se hi 
+aur har close bracket mei score update hooga and score related to recent bracket open stack se pop hooga 
+
+class Solution {
+    public int scoreOfParentheses(String s) {
+        Stack<Integer> st=new Stack<>();
+        int score=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='('){
+                st.push(score);
+                score=0;
+            }else{
+                score = st.peek() + Math.max(2*score,1);
+                st.pop();
+            }
+        }
+        return score;
+    }
+}
+
+  
