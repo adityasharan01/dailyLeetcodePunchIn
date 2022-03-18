@@ -1,0 +1,60 @@
+316. Remove Duplicate Letters
+
+https://leetcode.com/problems/remove-duplicate-letters/
+
+Intuition :
+What all things we need?
+• A stack to pop a greater ele(to make string
+  lexicographically smaller)
+ • An (int) array for lastIndex of the element.
+• A (boolean) array seen to check if it is seen or not
+
+Algorithm
+ pehle sabka lastIndex store krr loo array mei
+ fir se string traverse kro aur stack mei daalte jao 
+lkin agar stack mei chota value aa kr baitha bada value 
+ke toh bada value ko pehle pop krna hooga only if lastindex uska aage hai tabhi otherwise wo rahega .
+
+string builder mei store kro 
+sb.append((char)(st.pop()+'a'));
+return sb.reverse.toString()
+
+
+class Solution {
+    public String removeDuplicateLetters(String s) {
+        int[] lastIndex=new int[26];
+        
+        for(int i=0;i<s.length();i++)
+        {
+            lastIndex[s.charAt(i)-'a']=i;
+        }
+        
+        boolean[] seen=new boolean[26];
+        Stack<Integer> st=new Stack();
+        for(int i=0;i<s.length();i++)
+        {
+            int c=s.charAt(i)-'a';
+            if(seen[c])
+                continue;
+                //Nikalna hai stack wale character ko 
+                while(!st.isEmpty() && st.peek() > c && i<lastIndex[st.peek()])
+                {
+                    seen[st.peek()]=false;
+                    st.pop();
+                }
+                //Daalna hai present character ko
+                st.push(c);
+                seen[c]=true;
+        }
+        
+        StringBuilder sb=new StringBuilder();
+        while(!st.isEmpty())
+        {
+            sb.append((char)(st.pop()+'a'));
+        }
+        
+        return sb.reverse().toString();
+    }
+}
+
+
