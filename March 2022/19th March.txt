@@ -1,0 +1,49 @@
+ Intuition:
+make two frequency table for both the arrays
+arr , brr and one more array ( crr ) for storing the common element freq between them.
+
+once all of them are stored we need to find which element in common 
+is following the below logical condition 
+arr[i]+brr[i] = len + crr[i];
+
+ if(arr[i]+brr[i] == (len+crr[i]))
+    {   
+             ans = Math.max(ans,Math.max(arr[i],brr[i]));
+    }
+		this answer actually stores the one which is already the number we want to convert in 
+		so we just need to return length - answer for minimum rotation .
+		minimum rotation k liye maximum element occuring nikalna padega pehle !!
+
+
+Solution  
+
+class Solution {
+   public int minDominoRotations(int[] tops, int[] bottoms) {
+        
+    
+                int len = tops.length;
+                int[] arr = new int[7]; // store tops data
+                int[] brr = new int[7]; // store bottom data
+                int[] crr = new int[7]; // store repeated data
+                for(int i=0;i<len;i++)
+                {
+                    arr[tops[i]]++;
+                    brr[bottoms[i]]++;
+                    if(tops[i] == bottoms[i])
+                            crr[tops[i]]++;
+                    
+                }
+                int ans = -1;
+                for(int i=1;i<7;i++)
+                {
+                    if(arr[i]+brr[i] == (len+crr[i]))
+                    {   
+                        ans = Math.max(ans,Math.max(arr[i],brr[i]));
+                    }
+                }
+                return (ans!=-1)?len-ans:-1;
+            }
+        }
+
+                                 
+
