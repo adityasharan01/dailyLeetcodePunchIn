@@ -1,3 +1,35 @@
 https://leetcode.com/problems/broken-calculator/
 
 991. Broken Calculator
+
+Intuition : question mei diya tha  -1 or x2 
+use the reverse logic to achieve the startnumber from target by +1 or /2.
+this way we can restrict the solutions and number of steps. 
+class Solution {
+    public int brokenCalc(int startValue, int target) {
+        int operations=0;
+        while(target != startValue) 
+        {
+            if(target > startValue) 
+            {
+                if(target%2==0)
+                {
+                    target/=2;
+                    operations++;
+                }
+                else{
+                    target=target+1;
+                    operations++;
+                }
+                    
+            }
+            if(target < startValue )
+            {
+                target=target+1;
+                operations++;
+            }
+            
+        }
+        return operations;
+    }
+}
