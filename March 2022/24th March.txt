@@ -1,0 +1,26 @@
+881. Boats to Save People
+
+https://leetcode.com/problems/boats-to-save-people/
+
+Intuition : carry the heaviest person and ask can we carry a light person along with it 
+if no then only heaviest person will go to the boat.
+
+class Solution {
+    public int numRescueBoats(int[] people, int limit) {
+        Arrays.sort(people);
+        int i=0,j=people.length -1;
+        int minBoat=0;
+        while(i<=j)
+        {
+            if(people[i]+people[j]<=limit){
+                i++;
+                j--;
+            }
+            else{
+                j--;
+            }
+            minBoat++;
+        }
+        return minBoat;
+    }
+}
