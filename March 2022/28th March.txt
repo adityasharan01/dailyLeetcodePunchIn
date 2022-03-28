@@ -2,3 +2,40 @@ https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 
 Binary Search 
 
+Approach:
+-> It is similar to search in rotated array but containing duplicates values.
+-> Since it is a search problem, Binary search is our best option so we will implement that
+-> To implement binary search we divide the array into two parts and you will find that one part is always sorted with respect to mid because it is a rotated sorted array.
+-> if our target is within the sorted array we will find within that part otherwise jump to another part.
+-> To skip the duplicates we use a loop initially to skip the duplicates values.
+
+
+public class Solution {
+    
+public boolean search(int[] nums, int target) {
+        int i=0,j=nums.length-1;
+        while(i<=j){
+            while (i < j && nums[i] == nums[i+1]) ++i; //To skip the duplicates number in start
+            while (i < j && nums[j] == nums[j-1]) --j; //To skip the duplicates number in end
+            int mid=i+(j-i)/2;
+            if(nums[mid]==target) return true;
+            
+            if(nums[mid]>=nums[i]){ //Finding which part is sorted
+                if(target>=nums[i] && target<=nums[mid]){
+                    j=mid-1;        //if within the sorted array we will use binary search in that
+                }else{
+                    i=mid+1;        //if not then we will look on another sorted part.
+                }
+            }else{
+                if(target>=nums[mid] && target<=nums[j]){
+                    i=mid+1;
+                }else{
+                    j=mid-1;
+                }
+            }
+            
+        }
+        return false;
+    }
+
+}
