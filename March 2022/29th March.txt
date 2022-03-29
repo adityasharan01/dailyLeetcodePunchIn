@@ -1,1 +1,36 @@
 
+https://leetcode.com/problems/find-the-duplicate-number/
+
+287. Find the Duplicate Number
+
+Here we can see that there are two pointers 
+fast and slow pointers come into the picture 
+
+This is how you iterate
+ do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        }while(slow!=fast);
+				
+fast and slow pointer chalane k baad fast pointer loop mei ghus chuka hooga 
+we just need to slowly iterate now so that fast and slow pointer meets !!
+
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow=nums[0];
+        int fast=nums[0];
+        
+        do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        }while(slow!=fast);
+        
+        slow=nums[0];
+        
+        while(slow!=fast){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
+    }
+}
