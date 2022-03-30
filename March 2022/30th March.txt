@@ -1,0 +1,20 @@
+https://leetcode.com/problems/search-a-2d-matrix/
+
+74. Search a 2D Matrix
+Intuition :
+rows=mat.length
+cols=mat[0].length
+low=0
+high= col * rows - 1
+
+
+The basic Formula is Totalcol * row + col = int
+
+while(low <= high) {
+mid =low + ( high - low )/2
+
+row =mid / cols 
+
+col= mid % cols
+
+}
