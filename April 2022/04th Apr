@@ -1,0 +1,37 @@
+1721. Swapping Nodes in a Linked List
+
+You are given the head of a linked list, and an integer k.
+
+Return the head of the linked list after swapping the values of the kth node from the beginning and the kth node from the end (the list is 1-indexed).
+
+Intuition :
+pehla node pointer lekrr Kth distance cover krr loo and then ek fir two pointer k thru 
+kth node and head node se two pointer generate krk end tak traverse krro we will get the kth node from last .
+now that we have both the node simply perform the swap operations.
+
+class Solution {
+    public ListNode swapNodes(ListNode head, int k) {
+        if(head == null) return null;
+        
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        ListNode first = dummy; // First node
+        while(k-- > 0){
+            first = first.next;
+        }
+        
+        ListNode second = dummy, temp = first;  // Second node
+        while(temp != null){
+            second = second.next;
+            temp = temp.next;
+        }
+        
+        int val = first.val;
+        first.val = second.val;
+        second.val = val;
+        
+        return dummy.next;
+    }
+}
+Time Complexity: O(n) Space Complexity: O(1)
