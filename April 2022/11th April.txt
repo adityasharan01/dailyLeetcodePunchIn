@@ -1,1 +1,10 @@
 
+https://leetcode.com/problems/shift-2d-grid/
+
+1260. Shift 2D Grid
+
+Intuition :
+
+  2D Matrix into 1D Array
+  int FlatIndex = (i* col + j )% total;
+  Grid[ FlatIndex/col , FlatIndex % col ]
