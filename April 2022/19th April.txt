@@ -1,3 +1,71 @@
 https://leetcode.com/problems/recover-binary-search-tree/
 
 99. Recover Binary Search Tree
+
+Inorder traversal, non-recursive
+    public void recoverTree(TreeNode root) {
+        // stack of storage nodes
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode pre = null;// previous node
+        TreeNode first = null;// first wrong node
+        TreeNode second = null;// second wrong node
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            if (!stack.isEmpty()) {
+                root = stack.pop();
+
+                if (first == null && pre != null && pre.val > root.val) {
+                    first = pre;
+                }
+                if (first != null && pre.val > root.val) {
+                    second = root;
+                }
+                pre = root;
+
+                root = root.right;
+            }
+        }
+
+        // Swap the values of two nodes
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
+    }
+
+Inorder traversal, recursive way
+
+    private TreeNode pre;// previous node
+    private TreeNode first;// first wrong node
+    private TreeNode second;// second wrong node
+
+    public void recoverTree(TreeNode root) {
+        // recursive inorder traversal
+        inorder(root);
+
+        // Swap the values of two nodes
+        int tmp = first.val;
+        first.val = second.val;
+        second.val = tmp;
+    }
+
+    // recursive inorder traversal
+    private void inorder(TreeNode root) {
+        if (root == null)
+            return;
+        // Traverse the left child node
+        inorder(root.left);
+
+        if (first == null && pre != null && pre.val > root.val) {
+            first = pre;
+        }
+        if (first != null && pre.val > root.val) {
+            second = root;
+        }
+        pre = root;
+
+        // Traverse the right child node
+        inorder(root.right);
+    }
