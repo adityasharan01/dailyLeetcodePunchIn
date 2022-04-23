@@ -1,0 +1,36 @@
+535. Encode and Decode TinyURL
+
+https://leetcode.com/problems/encode-and-decode-tinyurl/
+
+To convert character array to string 
+we use valueOf method present in the String Class
+
+public class Codec {
+
+    // Encodes a URL to a shortened URL.
+     final String let = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+    final String pre = "http://tinyurl.com/";
+    HashMap<String, String> map = new HashMap();
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        String key = getRandom();
+        map.put(key, longUrl);
+        return new StringBuilder(pre).append(key).toString();
+    }
+
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+        String[] str = shortUrl.split("/");
+        String key = str[str.length-1];
+        return map.get(key);
+    }
+    
+    String getRandom() {
+        int range = 62;
+        char[] c = new char[5];
+        for(int i=0; i<5; i++) {
+            c[i] = let.charAt((int)Math.random()*range);
+        }
+        return String.valueOf(c);
+    }
+}
